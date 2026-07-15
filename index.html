@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evandro Harrison Hoffmann — Mobile & Product Engineer</title>
+<meta name="description" content="Mobile & product engineer behind the apps at AirAsia, Mindvalley and LottieFiles — and 50+ of his own on the App Store.">
+</head>
+<body>
+<!-- ARTIFACT:START -->
+<style>
+  /* ============ Tokens ============ */
+  :root{
+    /* Light — the "paper" edition */
+    --bg:#f3efe4; --bg-2:#ece5d5; --card:#faf7ef; --card-2:#f1ebdd;
+    --ink:#1b1712; --ink-2:#5b5347; --ink-3:#938a79;
+    --line:rgba(27,23,18,.15); --line-2:rgba(27,23,18,.08);
+    --accent:#a3560f; --accent-2:#7c3f10; --accent-soft:rgba(163,86,15,.10);
+    --tile-ground:#efe7d6; --tile-ink:rgba(27,23,18,.28);
+    --grain-opacity:.55; --grain-blend:multiply;
+    --shadow:0 1px 0 rgba(27,23,18,.05), 0 18px 40px -24px rgba(27,23,18,.35);
+    --maxw:1180px;
+    --serif:"Hoefler Text","Iowan Old Style","Palatino Linotype","Book Antiqua",Palatino,Georgia,"Times New Roman",serif;
+    --sans:"Helvetica Neue",Helvetica,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    --mono:"SF Mono",ui-monospace,"JetBrains Mono",Menlo,"Cascadia Code",Consolas,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      /* Dark — the "midnight" edition */
+      --bg:#0c0a08; --bg-2:#131009; --card:#161209; --card-2:#1c170d;
+      --ink:#f3ecdf; --ink-2:#a89d8b; --ink-3:#6d6456;
+      --line:rgba(243,236,223,.14); --line-2:rgba(243,236,223,.07);
+      --accent:#f2a63c; --accent-2:#f6c06a; --accent-soft:rgba(242,166,60,.13);
+      --tile-ground:#1e1810; --tile-ink:rgba(243,236,223,.30);
+      --grain-opacity:.045; --grain-blend:screen;
+      --shadow:0 1px 0 rgba(255,255,255,.02), 0 26px 60px -30px rgba(0,0,0,.8);
+    }
+  }
+  /* explicit toggle wins over media in both directions */
+  :root[data-theme="light"]{
+    --bg:#f3efe4; --bg-2:#ece5d5; --card:#faf7ef; --card-2:#f1ebdd;
+    --ink:#1b1712; --ink-2:#5b5347; --ink-3:#938a79;
+    --line:rgba(27,23,18,.15); --line-2:rgba(27,23,18,.08);
+    --accent:#a3560f; --accent-2:#7c3f10; --accent-soft:rgba(163,86,15,.10);
+    --tile-ground:#efe7d6; --tile-ink:rgba(27,23,18,.28);
+    --grain-opacity:.55; --grain-blend:multiply; --shadow:0 1px 0 rgba(27,23,18,.05), 0 18px 40px -24px rgba(27,23,18,.35);
+  }
+  :root[data-theme="dark"]{
+    --bg:#0c0a08; --bg-2:#131009; --card:#161209; --card-2:#1c170d;
+    --ink:#f3ecdf; --ink-2:#a89d8b; --ink-3:#6d6456;
+    --line:rgba(243,236,223,.14); --line-2:rgba(243,236,223,.07);
+    --accent:#f2a63c; --accent-2:#f6c06a; --accent-soft:rgba(242,166,60,.13);
+    --tile-ground:#1e1810; --tile-ink:rgba(243,236,223,.30);
+    --grain-opacity:.045; --grain-blend:screen; --shadow:0 1px 0 rgba(255,255,255,.02), 0 26px 60px -30px rgba(0,0,0,.8);
+  }
+
+  /* ============ Base ============ */
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:17px; line-height:1.6;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--accent); color:var(--bg);}
+  a{color:inherit; text-decoration:none}
+  img{max-width:100%}
+  h1,h2,h3{margin:0; font-weight:400; text-wrap:balance}
+
+  /* film grain / newsprint texture */
+  .grain{
+    position:fixed; inset:0; z-index:1; pointer-events:none;
+    opacity:var(--grain-opacity); mix-blend-mode:var(--grain-blend);
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap{width:100%; max-width:var(--maxw); margin:0 auto; padding:0 clamp(20px,5vw,56px); position:relative; z-index:2}
+
+  .mono{font-family:var(--mono)}
+  .eyebrow{
+    font-family:var(--mono); font-size:12px; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--ink-3); display:flex; align-items:center; gap:14px;
+  }
+  .eyebrow .folio{color:var(--accent)}
+  .eyebrow::after{content:""; flex:1; height:1px; background:var(--line)}
+
+  /* ============ Masthead ============ */
+  .masthead{
+    position:sticky; top:0; z-index:20; background:color-mix(in srgb, var(--bg) 82%, transparent);
+    -webkit-backdrop-filter:blur(14px) saturate(1.4); backdrop-filter:blur(14px) saturate(1.4);
+    border-bottom:1px solid var(--line);
+  }
+  .masthead .row{display:flex; align-items:center; justify-content:space-between; gap:20px; height:60px}
+  .mh-name{font-family:var(--mono); font-size:12.5px; letter-spacing:.2em; text-transform:uppercase; white-space:nowrap}
+  .mh-name b{color:var(--accent); font-weight:400}
+  .mh-nav{display:flex; gap:26px; font-family:var(--mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-2)}
+  .mh-nav a{position:relative; padding:4px 0; transition:color .2s}
+  .mh-nav a::after{content:""; position:absolute; left:0; right:100%; bottom:0; height:1px; background:var(--accent); transition:right .28s ease}
+  .mh-nav a:hover{color:var(--ink)} .mh-nav a:hover::after{right:0}
+  .mh-meta{font-family:var(--mono); font-size:11px; letter-spacing:.16em; color:var(--ink-3); text-transform:uppercase; white-space:nowrap}
+  @media (max-width:760px){ .mh-nav{display:none} }
+  @media (max-width:520px){ .mh-meta{display:none} }
+
+  /* ============ Hero ============ */
+  .hero{padding:clamp(56px,11vw,120px) 0 clamp(40px,7vw,72px); border-bottom:1px solid var(--line)}
+  .hero h1{
+    font-family:var(--serif); font-weight:400; letter-spacing:-.015em; line-height:.98;
+    font-size:clamp(52px,11.5vw,140px); margin:22px 0 0;
+  }
+  .hero h1 .amp{font-style:italic; color:var(--accent)}
+  .thesis{
+    font-family:var(--serif); font-style:italic; font-size:clamp(23px,3.4vw,38px);
+    line-height:1.28; color:var(--ink); max-width:20ch; margin:30px 0 0; text-wrap:balance;
+  }
+  .thesis b{font-style:normal; color:var(--accent); font-weight:400}
+  .bio{max-width:60ch; margin:26px 0 0; color:var(--ink-2); font-size:clamp(16px,1.9vw,18.5px)}
+  .bio::first-letter{
+    font-family:var(--serif); font-size:3.5em; line-height:.78; float:left;
+    padding:6px 12px 0 0; color:var(--accent); font-weight:400;
+  }
+  .hero-cta{display:flex; flex-wrap:wrap; gap:14px; margin-top:34px}
+  .btn{
+    font-family:var(--mono); font-size:12.5px; letter-spacing:.12em; text-transform:uppercase;
+    padding:13px 22px; border:1px solid var(--line); border-radius:2px; color:var(--ink);
+    display:inline-flex; align-items:center; gap:9px; transition:all .22s; background:transparent;
+  }
+  .btn .arw{transition:transform .22s}
+  .btn:hover{border-color:var(--accent); color:var(--accent)}
+  .btn:hover .arw{transform:translate(3px,-3px)}
+  .btn.solid{background:var(--accent); color:var(--bg); border-color:var(--accent)}
+  .btn.solid:hover{background:var(--accent-2); border-color:var(--accent-2); color:var(--bg); filter:none}
+  .btn.solid:hover .arw{transform:translateY(3px)}
+
+  /* stats */
+  .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:0; margin-top:clamp(44px,6vw,64px); border-top:1px solid var(--line)}
+  .stat{padding:26px 22px 6px 0; border-right:1px solid var(--line-2)}
+  .stat:last-child{border-right:0}
+  .stat .n{font-family:var(--serif); font-size:clamp(38px,6vw,60px); line-height:1; letter-spacing:-.02em; font-variant-numeric:tabular-nums}
+  .stat .n .plus{color:var(--accent)}
+  .stat .k{font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); margin-top:12px; line-height:1.5}
+  .stat.word .n{font-size:clamp(26px,3.4vw,34px)}
+  @media (max-width:720px){ .stats{grid-template-columns:repeat(2,1fr)} .stat:nth-child(2n){border-right:0} .stat{padding-right:16px} }
+
+  /* ============ Section scaffolding ============ */
+  section{position:relative}
+  .sec-head{padding:clamp(64px,9vw,104px) 0 clamp(26px,4vw,40px)}
+  .sec-head h2{font-family:var(--serif); font-size:clamp(30px,5vw,50px); letter-spacing:-.015em; line-height:1.03; margin:16px 0 0}
+  .sec-head .deck{max-width:58ch; color:var(--ink-2); margin:16px 0 0; font-size:clamp(15.5px,1.8vw,17.5px)}
+
+  /* ============ Experience feature ============ */
+  .feature{display:grid; grid-template-columns:repeat(3,1fr); gap:0; border-top:1px solid var(--line)}
+  .feat{padding:34px 30px 40px; border-right:1px solid var(--line); position:relative}
+  .feat:last-child{border-right:0}
+  .feat .co{display:flex; align-items:baseline; justify-content:space-between; gap:12px}
+  .feat .co h3{font-family:var(--serif); font-size:clamp(26px,3vw,34px); letter-spacing:-.01em}
+  .feat .yr{font-family:var(--mono); font-size:11px; letter-spacing:.12em; color:var(--ink-3); white-space:nowrap}
+  .feat .role{font-family:var(--mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin:14px 0 0}
+  .feat p{color:var(--ink-2); font-size:15.5px; margin:14px 0 0}
+  .feat .ver{font-family:var(--mono); font-size:11px; letter-spacing:.06em; color:var(--ink-3); margin-top:18px; padding-top:16px; border-top:1px dashed var(--line); display:flex; flex-wrap:wrap; gap:8px 16px}
+  .feat .ver b{color:var(--ink); font-weight:400}
+  .feat.lead{background:linear-gradient(180deg,var(--accent-soft),transparent 65%)}
+  .lf-apps{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px}
+  .lf-apps a,.lf-apps span{font-family:var(--mono); font-size:10.5px; letter-spacing:.05em; text-transform:uppercase; padding:5px 9px; border:1px solid var(--line); border-radius:999px; color:var(--ink-2); transition:.2s}
+  .lf-apps a:hover{border-color:var(--accent); color:var(--accent)}
+  @media (max-width:860px){ .feature{grid-template-columns:1fr} .feat{border-right:0; border-bottom:1px solid var(--line)} .feat:last-child{border-bottom:0} }
+
+  /* ============ Work grid ============ */
+  .filters{display:flex; flex-wrap:wrap; gap:8px; margin:6px 0 30px}
+  .chip{
+    font-family:var(--mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase;
+    padding:9px 15px; border:1px solid var(--line); border-radius:999px; color:var(--ink-2);
+    cursor:pointer; transition:.2s; background:transparent;
+  }
+  .chip:hover{color:var(--ink); border-color:var(--ink-3)}
+  .chip[aria-pressed="true"]{background:var(--ink); color:var(--bg); border-color:var(--ink)}
+  :root[data-theme="dark"] .chip[aria-pressed="true"],
+  .chip[aria-pressed="true"]{}
+
+  .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line-2); border:1px solid var(--line-2)}
+  @media (max-width:900px){ .grid{grid-template-columns:repeat(2,1fr)} }
+  @media (max-width:560px){ .grid{grid-template-columns:1fr} }
+  .card{
+    background:var(--card); padding:22px 22px 24px; display:flex; gap:17px; align-items:flex-start;
+    transition:transform .3s cubic-bezier(.2,.7,.2,1), background .3s; position:relative; overflow:hidden;
+  }
+  .card::after{ /* shine */
+    content:""; position:absolute; top:-60%; left:-30%; width:60%; height:220%;
+    background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--accent) 26%,transparent),transparent);
+    transform:translateX(-120%) skewX(-18deg); transition:transform .7s ease; pointer-events:none; opacity:0;
+  }
+  .card:hover{background:var(--card-2); transform:translateY(-3px)}
+  .card:hover::after{transform:translateX(320%) skewX(-18deg); opacity:.7}
+  .card.hide{display:none}
+  .tile{
+    width:56px; height:56px; flex:none; border-radius:26%; display:grid; place-items:center;
+    font-family:var(--serif); font-size:24px; color:var(--tile-ink); background:var(--tile-ground);
+    position:relative; overflow:hidden; box-shadow:inset 0 0 0 1px var(--line-2);
+  }
+  .tile::before{content:""; position:absolute; inset:0; opacity:.9;
+    background:radial-gradient(120% 120% at 25% 20%, var(--g1), transparent 62%), radial-gradient(140% 140% at 85% 95%, var(--g2), transparent 60%);}
+  .tile span{position:relative; z-index:1; font-weight:400; letter-spacing:-.02em; color:var(--ink); mix-blend-mode:normal; opacity:.92}
+  .v1{--g1:rgba(242,166,60,.55);--g2:rgba(201,116,26,.5)}
+  .v2{--g1:rgba(232,112,58,.5);--g2:rgba(184,61,30,.5)}
+  .v3{--g1:rgba(217,178,74,.5);--g2:rgba(169,126,30,.5)}
+  .v4{--g1:rgba(207,122,82,.5);--g2:rgba(156,74,46,.5)}
+  .v5{--g1:rgba(201,155,106,.5);--g2:rgba(138,90,52,.5)}
+  .v6{--g1:rgba(217,138,61,.5);--g2:rgba(158,79,28,.5)}
+  .card .meta{min-width:0; flex:1}
+  .card .nm{font-family:var(--serif); font-size:20px; letter-spacing:-.01em; display:flex; align-items:baseline; gap:8px}
+  .card .desc{color:var(--ink-2); font-size:14.5px; line-height:1.5; margin:6px 0 0}
+  .card .tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:13px}
+  .tag{font-family:var(--mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); border:1px solid var(--line-2); padding:3px 7px; border-radius:3px}
+  .card .go{font-family:var(--mono); font-size:11px; letter-spacing:.08em; color:var(--accent); margin-top:13px; display:inline-flex; align-items:center; gap:6px; opacity:0; transform:translateY(4px); transition:.25s}
+  .card:hover .go{opacity:1; transform:none}
+  .studio-note{font-family:var(--mono); font-size:11px; letter-spacing:.06em; color:var(--ink-3); margin-top:22px}
+  .studio-note b{color:var(--ink); font-weight:400}
+
+  /* ============ Capabilities ============ */
+  .stack-grid{display:grid; grid-template-columns:1.1fr 1fr; gap:clamp(28px,5vw,64px); border-top:1px solid var(--line); padding-top:clamp(30px,4vw,44px)}
+  @media (max-width:800px){ .stack-grid{grid-template-columns:1fr; gap:30px} }
+  .stack-grid h3{font-family:var(--mono); font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3); margin-bottom:18px}
+  .taglist{display:flex; flex-wrap:wrap; gap:9px}
+  .taglist .t{font-family:var(--sans); font-size:14.5px; padding:8px 14px; border:1px solid var(--line); border-radius:999px; color:var(--ink); transition:.2s}
+  .taglist .t:hover{border-color:var(--accent); color:var(--accent)}
+  .plat-row{display:flex; flex-direction:column; gap:2px}
+  .plat{display:flex; align-items:baseline; gap:14px; padding:14px 0; border-bottom:1px solid var(--line-2)}
+  .plat:last-child{border-bottom:0}
+  .plat .p{font-family:var(--serif); font-size:22px; width:130px; flex:none}
+  .plat .pd{color:var(--ink-2); font-size:14.5px}
+
+  /* ============ Contact ============ */
+  .contact{padding:clamp(70px,10vw,120px) 0 40px}
+  .contact .big{font-family:var(--serif); font-size:clamp(34px,7vw,74px); line-height:1.0; letter-spacing:-.02em}
+  .contact .big a{color:var(--accent); text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:6px; text-decoration-color:var(--line)}
+  .contact .big a:hover{text-decoration-color:var(--accent)}
+  .links{display:flex; flex-wrap:wrap; gap:10px; margin-top:38px}
+  .links a{font-family:var(--mono); font-size:12.5px; letter-spacing:.1em; text-transform:uppercase; padding:14px 20px; border:1px solid var(--line); border-radius:2px; display:inline-flex; gap:10px; align-items:center; transition:.22s}
+  .links a:hover{border-color:var(--accent); color:var(--accent); transform:translateY(-2px)}
+  .colophon{margin-top:clamp(56px,8vw,90px); padding-top:26px; border-top:1px solid var(--line); display:flex; flex-wrap:wrap; justify-content:space-between; gap:16px;
+    font-family:var(--mono); font-size:11px; letter-spacing:.08em; color:var(--ink-3); text-transform:uppercase}
+
+  /* ============ Reveal motion ============ */
+  .rise{opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1)}
+  .rise.in{opacity:1; transform:none}
+  .hero .rise{transition-delay:calc(var(--i,0) * 90ms)}
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none !important}
+    .rise{opacity:1; transform:none; transition:none}
+    .card,.card::after,.btn .arw,.card .go{transition:none}
+    html{scroll-behavior:auto}
+  }
+  html{scroll-behavior:smooth}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:2px}
+</style>
+
+<div class="grain" aria-hidden="true"></div>
+
+<header class="masthead">
+  <div class="wrap row">
+    <div class="mh-name">Evandro&nbsp;<b>Harrison</b>&nbsp;Hoffmann</div>
+    <nav class="mh-nav" aria-label="Sections">
+      <a href="#experience">Experience</a>
+      <a href="#work">Work</a>
+      <a href="#stack">Craft</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="mh-meta">Portfolio — Vol.&nbsp;01</div>
+  </div>
+</header>
+
+<main>
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow rise" style="--i:0"><span class="folio">§00</span> Selected Works · Mobile &amp; Product Engineering</p>
+      <h1 class="rise" style="--i:1">Evandro Harrison<br>Hoffmann<span class="amp">.</span></h1>
+      <p class="thesis rise" style="--i:2">I build mobile apps that <b>ship</b> — then I do it again, and again.</p>
+      <p class="bio rise" style="--i:3">For over a decade I've turned ideas into software people actually keep, across iOS, macOS, watchOS, visionOS and Android. I've built inside two of Southeast Asia's most-used apps — <b style="color:var(--ink)">AirAsia</b> and <b style="color:var(--ink)">Mindvalley</b> — led the native apps for <b style="color:var(--ink)">LottieFiles</b>, the world's animation platform, and through my studio <b style="color:var(--ink)">MagicLab Solutions</b> put dozens of my own apps in front of real users.</p>
+      <div class="hero-cta rise" style="--i:4">
+        <a class="btn solid" href="#work">See the work <span class="arw">↓</span></a>
+        <a class="btn" href="#contact">Get in touch <span class="arw">↗</span></a>
+      </div>
+
+      <div class="stats rise" style="--i:5">
+        <div class="stat"><div class="n" data-count="50" data-suffix="+">0<span class="plus">+</span></div><div class="k">Apps shipped<br>to the App Store</div></div>
+        <div class="stat"><div class="n" data-count="5">0</div><div class="k">Platforms — iOS · macOS<br>watchOS · visionOS · Android</div></div>
+        <div class="stat"><div class="n" data-count="3">0</div><div class="k">Flagship apps — AirAsia<br>Mindvalley · LottieFiles</div></div>
+        <div class="stat word"><div class="n" style="font-family:var(--serif)">MagicLab</div><div class="k">Studio<br>co-founder</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EXPERIENCE ===== -->
+  <section id="experience">
+    <div class="wrap sec-head">
+      <p class="eyebrow rise"><span class="folio">§01</span> Experience</p>
+      <h2 class="rise">Trusted with the apps millions open every day.</h2>
+      <p class="deck rise">Product engineering at company scale — from a Southeast-Asian super-app to a global animation platform, across phones, desktops and spatial computing.</p>
+    </div>
+    <div class="wrap">
+      <div class="feature rise">
+        <article class="feat">
+          <div class="co"><h3>AirAsia</h3><span class="yr">Kuala Lumpur</span></div>
+          <p class="role">Mobile Engineer</p>
+          <p>Shipped features inside the AirAsia super-app — the travel-and-lifestyle platform for flights, food and payments used across Southeast Asia. Native mobile at super-app scale: performance, reliability and release discipline for millions of daily users.</p>
+          <div class="ver"><span><b>Super-app</b> · flights · food · fintech</span></div>
+        </article>
+        <article class="feat">
+          <div class="co"><h3>Mindvalley</h3><span class="yr">Kuala Lumpur</span></div>
+          <p class="role">Mobile Engineer</p>
+          <p>Built for the Mindvalley app — personal-growth programs, meditations and live events. Rich media playback, subscription flows and a polished learning experience for a global audience of lifelong learners.</p>
+          <div class="ver"><span><b>Learning</b> · media · subscriptions</span></div>
+        </article>
+        <article class="feat lead">
+          <div class="co"><h3>LottieFiles</h3><span class="yr">Remote</span></div>
+          <p class="role">Native Apps Lead · iOS · macOS · visionOS</p>
+          <p>Led LottieFiles' native apps on one shared rendering core — dotLottie / ThorVG with a Kotlin-Multiplatform toolkit. Turned "Compare Players" into a device-true Motion Lab and authored the strategy to make the apps the production-motion cockpit for the Figma-Motion era.</p>
+          <div class="lf-apps">
+            <a href="https://apps.apple.com/app/id1231821260" target="_blank" rel="noopener">iOS — LottiePreview ↗</a>
+            <span>macOS 2.3</span>
+            <span>visionOS 1.0</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WORK ===== -->
+  <section id="work">
+    <div class="wrap sec-head">
+      <p class="eyebrow rise"><span class="folio">§02</span> Selected Work</p>
+      <h2 class="rise">Fifty-plus apps, and still shipping.</h2>
+      <p class="deck rise">A shelf of the apps I've designed and built — for my studio MagicLab Solutions and for clients across the App Store. Filter by what they do.</p>
+    </div>
+    <div class="wrap">
+      <div class="filters rise" role="group" aria-label="Filter apps">
+        <button class="chip" data-filter="all" aria-pressed="true">All</button>
+        <button class="chip" data-filter="wellness" aria-pressed="false">Health &amp; Wellness</button>
+        <button class="chip" data-filter="media" aria-pressed="false">AI &amp; Media</button>
+        <button class="chip" data-filter="productivity" aria-pressed="false">Productivity</button>
+        <button class="chip" data-filter="utility" aria-pressed="false">Utilities</button>
+        <button class="chip" data-filter="platform" aria-pressed="false">Mac · Watch · Vision</button>
+      </div>
+
+      <div class="grid rise" id="grid">
+        <!-- MagicLab Solutions -->
+        <a class="card" data-cat="wellness" href="https://apps.apple.com/app/id6757988505" target="_blank" rel="noopener">
+          <div class="tile v1"><span>Z</span></div>
+          <div class="meta"><div class="nm">Zuzu</div><p class="desc">Baby sleep &amp; feed tracker with gentle, actionable insights.</p><div class="tags"><span class="tag">iOS</span><span class="tag">MagicLab</span><span class="tag">HealthKit</span></div><span class="go">App Store ↗</span></div>
+        </a>
+        <div class="card" data-cat="wellness">
+          <div class="tile v4"><span>M</span></div>
+          <div class="meta"><div class="nm">Memories</div><p class="desc">Turn everyday moments into a private, beautiful timeline.</p><div class="tags"><span class="tag">iOS</span><span class="tag">MagicLab</span></div></div>
+        </div>
+        <a class="card" data-cat="productivity" href="https://apps.apple.com/app/id6746427975" target="_blank" rel="noopener">
+          <div class="tile v3"><span>B</span></div>
+          <div class="meta"><div class="nm">Brainfold</div><p class="desc">Flashcards &amp; spaced-repetition study, reimagined.</p><div class="tags"><span class="tag">iOS</span><span class="tag">MagicLab</span></div><span class="go">App Store ↗</span></div>
+        </a>
+        <a class="card" data-cat="productivity" href="https://apps.apple.com/app/myrenewals-sub-track-cancel/id6670665785" target="_blank" rel="noopener">
+          <div class="tile v6"><span>R</span></div>
+          <div class="meta"><div class="nm">MyRenewals</div><p class="desc">Track every subscription — and kill the ones you forgot.</p><div class="tags"><span class="tag">iOS</span><span class="tag">MagicLab</span></div><span class="go">App Store ↗</span></div>
+        </a>
+        <a class="card" data-cat="utility" href="https://apps.apple.com/app/id6444232316" target="_blank" rel="noopener">
+          <div class="tile v2"><span>Q</span></div>
+          <div class="meta"><div class="nm">QRamen</div><p class="desc">Scan, read and save QR codes — fast, private, offline.</p><div class="tags"><span class="tag">iOS</span><span class="tag">MagicLab</span></div><span class="go">App Store ↗</span></div>
+        </a>
+        <div class="card" data-cat="wellness">
+          <div class="tile v5"><span>M</span></div>
+          <div class="meta"><div class="nm">Murmur</div><p class="desc">A calmer way to capture voice notes and passing thoughts.</p><div class="tags"><span class="tag">iOS</span><span class="tag">MagicLab</span></div></div>
+        </div>
+
+        <!-- Music / AI / Media -->
+        <div class="card" data-cat="media">
+          <div class="tile v2"><span>S</span></div>
+          <div class="meta"><div class="nm">Stem Split</div><p class="desc">AI stem separation — pull vocals, drums and bass from any song.</p><div class="tags"><span class="tag">iOS</span><span class="tag">AI · Audio</span></div></div>
+        </div>
+        <div class="card" data-cat="media">
+          <div class="tile v6"><span>D</span></div>
+          <div class="meta"><div class="nm">DualCam</div><p class="desc">Record front and back cameras at the same time.</p><div class="tags"><span class="tag">iOS</span><span class="tag">Camera</span></div></div>
+        </div>
+        <div class="card" data-cat="media">
+          <div class="tile v1"><span>L</span></div>
+          <div class="meta"><div class="nm">LiveMic</div><p class="desc">Turn your iPhone into a live microphone, anywhere.</p><div class="tags"><span class="tag">iOS</span><span class="tag">Audio</span></div></div>
+        </div>
+        <div class="card" data-cat="media">
+          <div class="tile v4"><span>T</span></div>
+          <div class="meta"><div class="nm">TimeWarp</div><p class="desc">Playful AI face-and-time effects for video.</p><div class="tags"><span class="tag">iOS</span><span class="tag">AI · AR</span></div></div>
+        </div>
+        <div class="card" data-cat="media">
+          <div class="tile v3"><span>V</span></div>
+          <div class="meta"><div class="nm">Vocal Pitch</div><p class="desc">Find and train your vocal range with real-time pitch.</p><div class="tags"><span class="tag">iOS</span><span class="tag">Audio · DSP</span></div></div>
+        </div>
+        <div class="card" data-cat="media">
+          <div class="tile v5"><span>A</span></div>
+          <div class="meta"><div class="nm">AI Music</div><p class="desc">Generate original tracks from a prompt with AI.</p><div class="tags"><span class="tag">iOS</span><span class="tag">Generative AI</span></div></div>
+        </div>
+
+        <!-- Productivity / Utilities -->
+        <a class="card" data-cat="productivity" href="https://apps.apple.com/app/id1475886222" target="_blank" rel="noopener">
+          <div class="tile v6"><span>CV</span></div>
+          <div class="meta"><div class="nm">CV Maker</div><p class="desc">Build a clean, professional résumé right on your phone.</p><div class="tags"><span class="tag">iOS</span></div><span class="go">App Store ↗</span></div>
+        </a>
+        <div class="card" data-cat="wellness">
+          <div class="tile v1"><span>J</span></div>
+          <div class="meta"><div class="nm">Journal</div><p class="desc">A quiet, private space for a daily writing habit.</p><div class="tags"><span class="tag">iOS</span></div></div>
+        </div>
+        <div class="card" data-cat="utility">
+          <div class="tile v3"><span>C</span></div>
+          <div class="meta"><div class="nm">CleanTok</div><p class="desc">Bulk-clean your TikTok reposts in a single sweep.</p><div class="tags"><span class="tag">iOS</span></div></div>
+        </div>
+        <div class="card" data-cat="utility">
+          <div class="tile v2"><span>C</span></div>
+          <div class="meta"><div class="nm">Chooser</div><p class="desc">Can't decide? Put fingers down and let it pick.</p><div class="tags"><span class="tag">iOS</span></div></div>
+        </div>
+        <div class="card" data-cat="productivity">
+          <div class="tile v5"><span>I</span></div>
+          <div class="meta"><div class="nm">InvoiceMaker</div><p class="desc">Send clean, professional invoices in minutes.</p><div class="tags"><span class="tag">iOS</span></div></div>
+        </div>
+        <div class="card" data-cat="utility">
+          <div class="tile v4"><span>S</span></div>
+          <div class="meta"><div class="nm">Stamp</div><p class="desc">Add real, tamper-clear timestamps to your photos.</p><div class="tags"><span class="tag">iOS</span></div></div>
+        </div>
+        <div class="card" data-cat="wellness">
+          <div class="tile v6"><span>L</span></div>
+          <div class="meta"><div class="nm">LooksMax</div><p class="desc">Facial analysis and a coach for looking your best.</p><div class="tags"><span class="tag">iOS</span><span class="tag">Vision</span></div></div>
+        </div>
+        <div class="card" data-cat="utility">
+          <div class="tile v1"><span>X</span></div>
+          <div class="meta"><div class="nm">Xray Anatomy</div><p class="desc">Explore the human body, layer by interactive layer.</p><div class="tags"><span class="tag">iOS</span><span class="tag">Education</span></div></div>
+        </div>
+
+        <!-- Mac / Watch / Vision -->
+        <div class="card" data-cat="platform">
+          <div class="tile v3"><span>N</span></div>
+          <div class="meta"><div class="nm">DynamicNotch</div><p class="desc">Make the Mac's notch genuinely useful.</p><div class="tags"><span class="tag">macOS</span></div></div>
+        </div>
+        <div class="card" data-cat="platform">
+          <div class="tile v5"><span>W</span></div>
+          <div class="meta"><div class="nm">WristTube</div><p class="desc">Watch YouTube right from your Apple Watch.</p><div class="tags"><span class="tag">watchOS</span></div></div>
+        </div>
+      </div>
+
+      <p class="studio-note rise">Showing 22 of <b>50+</b> — plus watch faces, browsers, health tools and utilities across <b>MagicLab Solutions</b>, <b>EU App Solutions</b> and other studios.</p>
+    </div>
+  </section>
+
+  <!-- ===== CRAFT ===== -->
+  <section id="stack">
+    <div class="wrap sec-head">
+      <p class="eyebrow rise"><span class="folio">§03</span> Craft</p>
+      <h2 class="rise">One engineer, the whole ship.</h2>
+      <p class="deck rise">From the first Figma frame to a signed build on the App Store — design, engineering, backend and release, end to end.</p>
+    </div>
+    <div class="wrap">
+      <div class="stack-grid rise">
+        <div>
+          <h3>Platforms</h3>
+          <div class="plat-row">
+            <div class="plat"><div class="p">iOS</div><div class="pd">Swift · SwiftUI · UIKit · MVVM + Coordinator</div></div>
+            <div class="plat"><div class="p">macOS</div><div class="pd">Pure SwiftUI &amp; Mac Catalyst apps</div></div>
+            <div class="plat"><div class="p">visionOS</div><div class="pd">Spatial apps for Apple Vision Pro</div></div>
+            <div class="plat"><div class="p">watchOS</div><div class="pd">Independent &amp; companion watch apps</div></div>
+            <div class="plat"><div class="p">Android</div><div class="pd">Kotlin · Kotlin Multiplatform shared cores</div></div>
+          </div>
+        </div>
+        <div>
+          <h3>Domains &amp; tooling</h3>
+          <div class="taglist">
+            <span class="t">On-device AI</span><span class="t">Camera &amp; AR</span><span class="t">Audio / DSP</span>
+            <span class="t">Lottie · dotLottie · ThorVG</span><span class="t">RevenueCat &amp; subscriptions</span>
+            <span class="t">HealthKit</span><span class="t">Firebase</span><span class="t">Supabase</span>
+            <span class="t">Push &amp; FCM</span><span class="t">StoreKit 2</span><span class="t">Node / APIs</span>
+            <span class="t">Fastlane CI/CD</span><span class="t">App Store Connect</span><span class="t">Localization at scale</span>
+          </div>
+          <h3 style="margin-top:34px">The way I ship</h3>
+          <p style="color:var(--ink-2); font-size:15.5px; margin:0; max-width:52ch">Automated pipelines do the boring parts — localize, build, distribution-sign, upload, watch crashes — so I can spend the time on the app itself. Ideas become TestFlight builds in a day.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <p class="eyebrow rise"><span class="folio">§04</span> Colophon &amp; Contact</p>
+      <p class="big rise" style="margin-top:22px">Got an app that needs<br>to actually <a href="mailto:evandro.hoffmann@gmail.com">ship?</a></p>
+      <div class="links rise">
+        <a href="mailto:evandro.hoffmann@gmail.com">Email ↗</a>
+        <a href="https://www.linkedin.com/in/evandro-harrison-hoffmann" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://github.com/eharrison" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="https://apps.apple.com/app/id6757988505" target="_blank" rel="noopener">App Store ↗</a>
+      </div>
+      <div class="colophon">
+        <span>Evandro Harrison Hoffmann © 2026</span>
+        <span>Set in Hoefler Text, Helvetica Neue &amp; SF Mono</span>
+        <span>Portfolio — Vol. 01</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* scroll reveal */
+  var rises = [].slice.call(document.querySelectorAll(".rise"));
+  if(reduce || !("IntersectionObserver" in window)){
+    rises.forEach(function(el){ el.classList.add("in"); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, {threshold:0.12, rootMargin:"0px 0px -8% 0px"});
+    rises.forEach(function(el){ io.observe(el); });
+  }
+
+  /* count-up stats */
+  function countUp(el){
+    var target = parseInt(el.getAttribute("data-count"),10);
+    var suffix = el.getAttribute("data-suffix") || "";
+    if(reduce){ el.textContent = target + suffix; return; }
+    var start = null, dur = 1100;
+    function step(ts){
+      if(!start) start = ts;
+      var p = Math.min((ts-start)/dur, 1);
+      var eased = 1 - Math.pow(1-p, 3);
+      var val = Math.round(eased * target);
+      el.innerHTML = val + (suffix ? '<span class="plus">'+suffix+'</span>' : "");
+      if(p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var counters = [].slice.call(document.querySelectorAll("[data-count]"));
+  if("IntersectionObserver" in window && !reduce){
+    var co = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ countUp(e.target); co.unobserve(e.target); } });
+    }, {threshold:0.6});
+    counters.forEach(function(el){ co.observe(el); });
+  } else {
+    counters.forEach(countUp);
+  }
+
+  /* filters */
+  var chips = [].slice.call(document.querySelectorAll(".chip"));
+  var cards = [].slice.call(document.querySelectorAll("#grid .card"));
+  chips.forEach(function(chip){
+    chip.addEventListener("click", function(){
+      chips.forEach(function(c){ c.setAttribute("aria-pressed","false"); });
+      chip.setAttribute("aria-pressed","true");
+      var f = chip.getAttribute("data-filter");
+      cards.forEach(function(card){
+        var show = (f === "all") || card.getAttribute("data-cat") === f;
+        card.classList.toggle("hide", !show);
+      });
+    });
+  });
+})();
+</script>
+<!-- ARTIFACT:END -->
+</body>
+</html>
