@@ -7,11 +7,9 @@
 <meta name="description" content="Mobile & product engineer behind the apps at AirAsia, Mindvalley and LottieFiles — and 50+ of his own on the App Store.">
 </head>
 <body>
-<!-- ARTIFACT:START -->
 <style>
   /* ============ Tokens ============ */
   :root{
-    /* Light — the "paper" edition */
     --bg:#f3efe4; --bg-2:#ece5d5; --card:#faf7ef; --card-2:#f1ebdd;
     --ink:#1b1712; --ink-2:#5b5347; --ink-3:#938a79;
     --line:rgba(27,23,18,.15); --line-2:rgba(27,23,18,.08);
@@ -26,7 +24,6 @@
   }
   @media (prefers-color-scheme: dark){
     :root{
-      /* Dark — the "midnight" edition */
       --bg:#0c0a08; --bg-2:#131009; --card:#161209; --card-2:#1c170d;
       --ink:#f3ecdf; --ink-2:#a89d8b; --ink-3:#6d6456;
       --line:rgba(243,236,223,.14); --line-2:rgba(243,236,223,.07);
@@ -36,7 +33,6 @@
       --shadow:0 1px 0 rgba(255,255,255,.02), 0 26px 60px -30px rgba(0,0,0,.8);
     }
   }
-  /* explicit toggle wins over media in both directions */
   :root[data-theme="light"]{
     --bg:#f3efe4; --bg-2:#ece5d5; --card:#faf7ef; --card-2:#f1ebdd;
     --ink:#1b1712; --ink-2:#5b5347; --ink-3:#938a79;
@@ -56,19 +52,18 @@
 
   /* ============ Base ============ */
   *{box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%}
+  html{-webkit-text-size-adjust:100%; scroll-behavior:smooth}
   body{
     margin:0; background:var(--bg); color:var(--ink);
     font-family:var(--sans); font-size:17px; line-height:1.6;
-    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
-    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden;
   }
+  body.locked{overflow:hidden}
   ::selection{background:var(--accent); color:var(--bg);}
   a{color:inherit; text-decoration:none}
   img{max-width:100%}
   h1,h2,h3{margin:0; font-weight:400; text-wrap:balance}
 
-  /* film grain / newsprint texture */
   .grain{
     position:fixed; inset:0; z-index:1; pointer-events:none;
     opacity:var(--grain-opacity); mix-blend-mode:var(--grain-blend);
@@ -77,19 +72,13 @@
   .wrap{width:100%; max-width:var(--maxw); margin:0 auto; padding:0 clamp(20px,5vw,56px); position:relative; z-index:2}
 
   .mono{font-family:var(--mono)}
-  .eyebrow{
-    font-family:var(--mono); font-size:12px; letter-spacing:.22em; text-transform:uppercase;
-    color:var(--ink-3); display:flex; align-items:center; gap:14px;
-  }
+  .eyebrow{font-family:var(--mono); font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--ink-3); display:flex; align-items:center; gap:14px;}
   .eyebrow .folio{color:var(--accent)}
   .eyebrow::after{content:""; flex:1; height:1px; background:var(--line)}
 
   /* ============ Masthead ============ */
-  .masthead{
-    position:sticky; top:0; z-index:20; background:color-mix(in srgb, var(--bg) 82%, transparent);
-    -webkit-backdrop-filter:blur(14px) saturate(1.4); backdrop-filter:blur(14px) saturate(1.4);
-    border-bottom:1px solid var(--line);
-  }
+  .masthead{position:sticky; top:0; z-index:20; background:color-mix(in srgb, var(--bg) 82%, transparent);
+    -webkit-backdrop-filter:blur(14px) saturate(1.4); backdrop-filter:blur(14px) saturate(1.4); border-bottom:1px solid var(--line);}
   .masthead .row{display:flex; align-items:center; justify-content:space-between; gap:20px; height:60px}
   .mh-name{font-family:var(--mono); font-size:12.5px; letter-spacing:.2em; text-transform:uppercase; white-space:nowrap}
   .mh-name b{color:var(--accent); font-weight:400}
@@ -103,35 +92,21 @@
 
   /* ============ Hero ============ */
   .hero{padding:clamp(56px,11vw,120px) 0 clamp(40px,7vw,72px); border-bottom:1px solid var(--line)}
-  .hero h1{
-    font-family:var(--serif); font-weight:400; letter-spacing:-.015em; line-height:.98;
-    font-size:clamp(52px,11.5vw,140px); margin:22px 0 0;
-  }
+  .hero h1{font-family:var(--serif); font-weight:400; letter-spacing:-.015em; line-height:.98; font-size:clamp(52px,11.5vw,140px); margin:22px 0 0;}
   .hero h1 .amp{font-style:italic; color:var(--accent)}
-  .thesis{
-    font-family:var(--serif); font-style:italic; font-size:clamp(23px,3.4vw,38px);
-    line-height:1.28; color:var(--ink); max-width:20ch; margin:30px 0 0; text-wrap:balance;
-  }
+  .thesis{font-family:var(--serif); font-style:italic; font-size:clamp(23px,3.4vw,38px); line-height:1.28; color:var(--ink); max-width:20ch; margin:30px 0 0; text-wrap:balance;}
   .thesis b{font-style:normal; color:var(--accent); font-weight:400}
   .bio{max-width:60ch; margin:26px 0 0; color:var(--ink-2); font-size:clamp(16px,1.9vw,18.5px)}
-  .bio::first-letter{
-    font-family:var(--serif); font-size:3.5em; line-height:.78; float:left;
-    padding:6px 12px 0 0; color:var(--accent); font-weight:400;
-  }
+  .bio::first-letter{font-family:var(--serif); font-size:3.5em; line-height:.78; float:left; padding:6px 12px 0 0; color:var(--accent); font-weight:400;}
   .hero-cta{display:flex; flex-wrap:wrap; gap:14px; margin-top:34px}
-  .btn{
-    font-family:var(--mono); font-size:12.5px; letter-spacing:.12em; text-transform:uppercase;
-    padding:13px 22px; border:1px solid var(--line); border-radius:2px; color:var(--ink);
-    display:inline-flex; align-items:center; gap:9px; transition:all .22s; background:transparent;
-  }
+  .btn{font-family:var(--mono); font-size:12.5px; letter-spacing:.12em; text-transform:uppercase; padding:13px 22px; border:1px solid var(--line); border-radius:2px; color:var(--ink); display:inline-flex; align-items:center; gap:9px; transition:all .22s; background:transparent; cursor:pointer;}
   .btn .arw{transition:transform .22s}
   .btn:hover{border-color:var(--accent); color:var(--accent)}
   .btn:hover .arw{transform:translate(3px,-3px)}
   .btn.solid{background:var(--accent); color:var(--bg); border-color:var(--accent)}
-  .btn.solid:hover{background:var(--accent-2); border-color:var(--accent-2); color:var(--bg); filter:none}
+  .btn.solid:hover{background:var(--accent-2); border-color:var(--accent-2); color:var(--bg)}
   .btn.solid:hover .arw{transform:translateY(3px)}
 
-  /* stats */
   .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:0; margin-top:clamp(44px,6vw,64px); border-top:1px solid var(--line)}
   .stat{padding:26px 22px 6px 0; border-right:1px solid var(--line-2)}
   .stat:last-child{border-right:0}
@@ -141,13 +116,13 @@
   .stat.word .n{font-size:clamp(26px,3.4vw,34px)}
   @media (max-width:720px){ .stats{grid-template-columns:repeat(2,1fr)} .stat:nth-child(2n){border-right:0} .stat{padding-right:16px} }
 
-  /* ============ Section scaffolding ============ */
+  /* ============ Sections ============ */
   section{position:relative}
   .sec-head{padding:clamp(64px,9vw,104px) 0 clamp(26px,4vw,40px)}
   .sec-head h2{font-family:var(--serif); font-size:clamp(30px,5vw,50px); letter-spacing:-.015em; line-height:1.03; margin:16px 0 0}
   .sec-head .deck{max-width:58ch; color:var(--ink-2); margin:16px 0 0; font-size:clamp(15.5px,1.8vw,17.5px)}
 
-  /* ============ Experience feature ============ */
+  /* ============ Experience ============ */
   .feature{display:grid; grid-template-columns:repeat(3,1fr); gap:0; border-top:1px solid var(--line)}
   .feat{padding:34px 30px 40px; border-right:1px solid var(--line); position:relative}
   .feat:last-child{border-right:0}
@@ -166,56 +141,38 @@
 
   /* ============ Work grid ============ */
   .filters{display:flex; flex-wrap:wrap; gap:8px; margin:6px 0 30px}
-  .chip{
-    font-family:var(--mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase;
-    padding:9px 15px; border:1px solid var(--line); border-radius:999px; color:var(--ink-2);
-    cursor:pointer; transition:.2s; background:transparent;
-  }
+  .chip{font-family:var(--mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; padding:9px 15px; border:1px solid var(--line); border-radius:999px; color:var(--ink-2); cursor:pointer; transition:.2s; background:transparent;}
   .chip:hover{color:var(--ink); border-color:var(--ink-3)}
   .chip[aria-pressed="true"]{background:var(--ink); color:var(--bg); border-color:var(--ink)}
-  :root[data-theme="dark"] .chip[aria-pressed="true"],
-  .chip[aria-pressed="true"]{}
 
   .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line-2); border:1px solid var(--line-2)}
   @media (max-width:900px){ .grid{grid-template-columns:repeat(2,1fr)} }
   @media (max-width:560px){ .grid{grid-template-columns:1fr} }
-  .card{
-    background:var(--card); padding:22px 22px 24px; display:flex; gap:17px; align-items:flex-start;
-    transition:transform .3s cubic-bezier(.2,.7,.2,1), background .3s; position:relative; overflow:hidden;
-  }
-  .card::after{ /* shine */
-    content:""; position:absolute; top:-60%; left:-30%; width:60%; height:220%;
-    background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--accent) 26%,transparent),transparent);
-    transform:translateX(-120%) skewX(-18deg); transition:transform .7s ease; pointer-events:none; opacity:0;
-  }
+  .card{appearance:none; font:inherit; color:inherit; text-align:left; width:100%; background:var(--card); padding:22px 22px 24px; display:flex; gap:17px; align-items:flex-start; transition:transform .3s cubic-bezier(.2,.7,.2,1), background .3s; position:relative; overflow:hidden; cursor:pointer; border:0;}
+  .card::after{content:""; position:absolute; top:-60%; left:-30%; width:60%; height:220%; background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--accent) 26%,transparent),transparent); transform:translateX(-120%) skewX(-18deg); transition:transform .7s ease; pointer-events:none; opacity:0;}
   .card:hover{background:var(--card-2); transform:translateY(-3px)}
   .card:hover::after{transform:translateX(320%) skewX(-18deg); opacity:.7}
   .card.hide{display:none}
-  .tile{
-    width:56px; height:56px; flex:none; border-radius:26%; display:grid; place-items:center;
-    font-family:var(--serif); font-size:24px; color:var(--tile-ink); background:var(--tile-ground);
-    position:relative; overflow:hidden; box-shadow:inset 0 0 0 1px var(--line-2);
-  }
-  .tile::before{content:""; position:absolute; inset:0; opacity:.9;
-    background:radial-gradient(120% 120% at 25% 20%, var(--g1), transparent 62%), radial-gradient(140% 140% at 85% 95%, var(--g2), transparent 60%);}
-  .tile span{position:relative; z-index:1; font-weight:400; letter-spacing:-.02em; color:var(--ink); mix-blend-mode:normal; opacity:.92}
-  .v1{--g1:rgba(242,166,60,.55);--g2:rgba(201,116,26,.5)}
-  .v2{--g1:rgba(232,112,58,.5);--g2:rgba(184,61,30,.5)}
-  .v3{--g1:rgba(217,178,74,.5);--g2:rgba(169,126,30,.5)}
-  .v4{--g1:rgba(207,122,82,.5);--g2:rgba(156,74,46,.5)}
-  .v5{--g1:rgba(201,155,106,.5);--g2:rgba(138,90,52,.5)}
-  .v6{--g1:rgba(217,138,61,.5);--g2:rgba(158,79,28,.5)}
+  .thumb{width:56px; height:56px; flex:none}
+  .ico{width:56px; height:56px; border-radius:26%; object-fit:cover; display:block; background:var(--tile-ground); box-shadow:inset 0 0 0 1px var(--line-2), 0 4px 12px -6px rgba(0,0,0,.5);}
+  .tile{width:56px; height:56px; border-radius:26%; display:grid; place-items:center; font-family:var(--serif); font-size:24px; background:var(--tile-ground); position:relative; overflow:hidden; box-shadow:inset 0 0 0 1px var(--line-2);}
+  .tile::before{content:""; position:absolute; inset:0; opacity:.9; background:radial-gradient(120% 120% at 25% 20%, var(--g1), transparent 62%), radial-gradient(140% 140% at 85% 95%, var(--g2), transparent 60%);}
+  .tile span{position:relative; z-index:1; letter-spacing:-.02em; color:var(--ink); opacity:.92}
+  .v1{--g1:rgba(242,166,60,.55);--g2:rgba(201,116,26,.5)} .v2{--g1:rgba(232,112,58,.5);--g2:rgba(184,61,30,.5)}
+  .v3{--g1:rgba(217,178,74,.5);--g2:rgba(169,126,30,.5)} .v4{--g1:rgba(207,122,82,.5);--g2:rgba(156,74,46,.5)}
+  .v5{--g1:rgba(201,155,106,.5);--g2:rgba(138,90,52,.5)} .v6{--g1:rgba(217,138,61,.5);--g2:rgba(158,79,28,.5)}
   .card .meta{min-width:0; flex:1}
   .card .nm{font-family:var(--serif); font-size:20px; letter-spacing:-.01em; display:flex; align-items:baseline; gap:8px}
   .card .desc{color:var(--ink-2); font-size:14.5px; line-height:1.5; margin:6px 0 0}
   .card .tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:13px}
   .tag{font-family:var(--mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); border:1px solid var(--line-2); padding:3px 7px; border-radius:3px}
+  .tag.hot{color:var(--accent); border-color:color-mix(in srgb,var(--accent) 40%,transparent)}
   .card .go{font-family:var(--mono); font-size:11px; letter-spacing:.08em; color:var(--accent); margin-top:13px; display:inline-flex; align-items:center; gap:6px; opacity:0; transform:translateY(4px); transition:.25s}
-  .card:hover .go{opacity:1; transform:none}
+  .card:hover .go,.card:focus-visible .go{opacity:1; transform:none}
   .studio-note{font-family:var(--mono); font-size:11px; letter-spacing:.06em; color:var(--ink-3); margin-top:22px}
   .studio-note b{color:var(--ink); font-weight:400}
 
-  /* ============ Capabilities ============ */
+  /* ============ Craft ============ */
   .stack-grid{display:grid; grid-template-columns:1.1fr 1fr; gap:clamp(28px,5vw,64px); border-top:1px solid var(--line); padding-top:clamp(30px,4vw,44px)}
   @media (max-width:800px){ .stack-grid{grid-template-columns:1fr; gap:30px} }
   .stack-grid h3{font-family:var(--mono); font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3); margin-bottom:18px}
@@ -227,6 +184,8 @@
   .plat:last-child{border-bottom:0}
   .plat .p{font-family:var(--serif); font-size:22px; width:130px; flex:none}
   .plat .pd{color:var(--ink-2); font-size:14.5px}
+  .plat.spot{background:linear-gradient(90deg,var(--accent-soft),transparent 70%); margin:0 -14px; padding:14px; border-radius:4px}
+  .plat.spot .p{color:var(--accent)}
 
   /* ============ Contact ============ */
   .contact{padding:clamp(70px,10vw,120px) 0 40px}
@@ -236,20 +195,45 @@
   .links{display:flex; flex-wrap:wrap; gap:10px; margin-top:38px}
   .links a{font-family:var(--mono); font-size:12.5px; letter-spacing:.1em; text-transform:uppercase; padding:14px 20px; border:1px solid var(--line); border-radius:2px; display:inline-flex; gap:10px; align-items:center; transition:.22s}
   .links a:hover{border-color:var(--accent); color:var(--accent); transform:translateY(-2px)}
-  .colophon{margin-top:clamp(56px,8vw,90px); padding-top:26px; border-top:1px solid var(--line); display:flex; flex-wrap:wrap; justify-content:space-between; gap:16px;
-    font-family:var(--mono); font-size:11px; letter-spacing:.08em; color:var(--ink-3); text-transform:uppercase}
+  .colophon{margin-top:clamp(56px,8vw,90px); padding-top:26px; border-top:1px solid var(--line); display:flex; flex-wrap:wrap; justify-content:space-between; gap:16px; font-family:var(--mono); font-size:11px; letter-spacing:.08em; color:var(--ink-3); text-transform:uppercase}
 
-  /* ============ Reveal motion ============ */
+  /* ============ Lightbox ============ */
+  .lightbox{position:fixed; inset:0; z-index:100; display:none; place-items:center; padding:clamp(14px,4vw,48px)}
+  .lightbox.open{display:grid}
+  .lb-backdrop{position:absolute; inset:0; background:color-mix(in srgb,var(--bg) 30%, #000 70%); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); opacity:0; transition:opacity .3s}
+  .lightbox.open .lb-backdrop{opacity:1}
+  .lb-panel{position:relative; z-index:1; width:100%; max-width:940px; max-height:92vh; overflow:auto; background:var(--card); border:1px solid var(--line); border-radius:8px; padding:clamp(22px,3.4vw,40px); box-shadow:0 40px 120px -30px rgba(0,0,0,.7); transform:translateY(16px) scale(.98); opacity:0; transition:transform .38s cubic-bezier(.2,.7,.2,1), opacity .3s}
+  .lightbox.open .lb-panel{transform:none; opacity:1}
+  .lb-x{position:absolute; top:14px; right:14px; width:38px; height:38px; border-radius:50%; border:1px solid var(--line); background:var(--bg); color:var(--ink); font-size:15px; cursor:pointer; display:grid; place-items:center; transition:.2s; z-index:2}
+  .lb-x:hover{border-color:var(--accent); color:var(--accent); transform:rotate(90deg)}
+  .lb-head{display:flex; gap:20px; align-items:flex-start; padding-right:36px}
+  .lb-ico img,.lb-ico .tile{width:84px; height:84px; border-radius:24%; font-size:34px}
+  .lb-ico img{object-fit:cover; display:block; box-shadow:inset 0 0 0 1px var(--line-2), 0 8px 22px -10px rgba(0,0,0,.6)}
+  .lb-name{font-family:var(--serif); font-size:clamp(26px,4vw,38px); letter-spacing:-.01em; line-height:1.05}
+  .lb-tagline{color:var(--ink-2); font-size:16px; margin:8px 0 0; max-width:54ch}
+  .lb-tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:14px}
+  .lb-store{display:inline-flex; align-items:center; gap:8px; margin-top:16px; font-family:var(--mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase; padding:11px 18px; border:1px solid var(--accent); color:var(--accent); border-radius:2px; transition:.2s}
+  .lb-store:hover{background:var(--accent); color:var(--bg)}
+  .lb-shots{position:relative; margin-top:clamp(22px,3vw,32px)}
+  .lb-track{display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; scroll-behavior:smooth; padding-bottom:8px; -webkit-overflow-scrolling:touch}
+  .lb-track::-webkit-scrollbar{height:6px} .lb-track::-webkit-scrollbar-thumb{background:var(--line); border-radius:99px}
+  .lb-shot{flex:none; scroll-snap-align:center}
+  .lb-shot img{height:clamp(320px,56vh,540px); width:auto; border-radius:18px; border:1px solid var(--line); display:block; background:var(--bg-2)}
+  .lb-arrow{position:absolute; top:calc(50% - 26px); width:44px; height:44px; border-radius:50%; border:1px solid var(--line); background:color-mix(in srgb,var(--card) 88%,transparent); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); color:var(--ink); cursor:pointer; display:grid; place-items:center; font-size:16px; transition:.2s; z-index:2}
+  .lb-arrow:hover{border-color:var(--accent); color:var(--accent)}
+  .lb-arrow.prev{left:-6px} .lb-arrow.next{right:-6px}
+  .lb-hint{font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin-top:12px}
+
+  /* ============ Reveal ============ */
   .rise{opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1)}
   .rise.in{opacity:1; transform:none}
   .hero .rise{transition-delay:calc(var(--i,0) * 90ms)}
   @media (prefers-reduced-motion:reduce){
     *{animation:none !important}
-    .rise{opacity:1; transform:none; transition:none}
-    .card,.card::after,.btn .arw,.card .go{transition:none}
     html{scroll-behavior:auto}
+    .rise{opacity:1; transform:none; transition:none}
+    .card,.card::after,.btn .arw,.card .go,.lb-panel,.lb-backdrop,.lb-track{transition:none}
   }
-  html{scroll-behavior:smooth}
   :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:2px}
 </style>
 
@@ -259,38 +243,34 @@
   <div class="wrap row">
     <div class="mh-name">Evandro&nbsp;<b>Harrison</b>&nbsp;Hoffmann</div>
     <nav class="mh-nav" aria-label="Sections">
-      <a href="#experience">Experience</a>
-      <a href="#work">Work</a>
-      <a href="#stack">Craft</a>
-      <a href="#contact">Contact</a>
+      <a href="#experience">Experience</a><a href="#work">Work</a><a href="#stack">Craft</a><a href="#contact">Contact</a>
     </nav>
     <div class="mh-meta">Portfolio — Vol.&nbsp;01</div>
   </div>
 </header>
 
 <main>
-  <!-- ===== HERO ===== -->
+  <!-- HERO -->
   <section class="hero">
     <div class="wrap">
       <p class="eyebrow rise" style="--i:0"><span class="folio">§00</span> Selected Works · Mobile &amp; Product Engineering</p>
       <h1 class="rise" style="--i:1">Evandro Harrison<br>Hoffmann<span class="amp">.</span></h1>
       <p class="thesis rise" style="--i:2">I build mobile apps that <b>ship</b> — then I do it again, and again.</p>
-      <p class="bio rise" style="--i:3">For over a decade I've turned ideas into software people actually keep, across iOS, macOS, watchOS, visionOS and Android. I've built inside two of Southeast Asia's most-used apps — <b style="color:var(--ink)">AirAsia</b> and <b style="color:var(--ink)">Mindvalley</b> — led the native apps for <b style="color:var(--ink)">LottieFiles</b>, the world's animation platform, and through my studio <b style="color:var(--ink)">MagicLab Solutions</b> put dozens of my own apps in front of real users.</p>
+      <p class="bio rise" style="--i:3">For over a decade I've turned ideas into software people actually keep, across iOS, macOS, watchOS, visionOS, CarPlay and Android. I've built inside two of Southeast Asia's most-used apps — <b style="color:var(--ink)">AirAsia</b> and <b style="color:var(--ink)">Mindvalley</b> — led the native apps for <b style="color:var(--ink)">LottieFiles</b>, the world's animation platform, and through my studio <b style="color:var(--ink)">MagicLab Solutions</b> put dozens of my own apps in front of real users.</p>
       <div class="hero-cta rise" style="--i:4">
         <a class="btn solid" href="#work">See the work <span class="arw">↓</span></a>
         <a class="btn" href="#contact">Get in touch <span class="arw">↗</span></a>
       </div>
-
       <div class="stats rise" style="--i:5">
         <div class="stat"><div class="n" data-count="50" data-suffix="+">0<span class="plus">+</span></div><div class="k">Apps shipped<br>to the App Store</div></div>
-        <div class="stat"><div class="n" data-count="5">0</div><div class="k">Platforms — iOS · macOS<br>watchOS · visionOS · Android</div></div>
+        <div class="stat"><div class="n" data-count="6">0</div><div class="k">Platforms — iOS · macOS · watchOS<br>visionOS · CarPlay · Android</div></div>
         <div class="stat"><div class="n" data-count="3">0</div><div class="k">Flagship apps — AirAsia<br>Mindvalley · LottieFiles</div></div>
         <div class="stat word"><div class="n" style="font-family:var(--serif)">MagicLab</div><div class="k">Studio<br>co-founder</div></div>
       </div>
     </div>
   </section>
 
-  <!-- ===== EXPERIENCE ===== -->
+  <!-- EXPERIENCE -->
   <section id="experience">
     <div class="wrap sec-head">
       <p class="eyebrow rise"><span class="folio">§01</span> Experience</p>
@@ -317,20 +297,19 @@
           <p>Led LottieFiles' native apps on one shared rendering core — dotLottie / ThorVG with a Kotlin-Multiplatform toolkit. Turned "Compare Players" into a device-true Motion Lab and authored the strategy to make the apps the production-motion cockpit for the Figma-Motion era.</p>
           <div class="lf-apps">
             <a href="https://apps.apple.com/app/id1231821260" target="_blank" rel="noopener">iOS — LottiePreview ↗</a>
-            <span>macOS 2.3</span>
-            <span>visionOS 1.0</span>
+            <span>macOS 2.3</span><span>visionOS 1.0</span>
           </div>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- ===== WORK ===== -->
+  <!-- WORK -->
   <section id="work">
     <div class="wrap sec-head">
       <p class="eyebrow rise"><span class="folio">§02</span> Selected Work</p>
       <h2 class="rise">Fifty-plus apps, and still shipping.</h2>
-      <p class="deck rise">A shelf of the apps I've designed and built — for my studio MagicLab Solutions and for clients across the App Store. Filter by what they do.</p>
+      <p class="deck rise">A shelf of the apps I've designed and built — for my studio MagicLab Solutions and for clients across the App Store. Tap any app for screenshots and detail.</p>
     </div>
     <div class="wrap">
       <div class="filters rise" role="group" aria-label="Filter apps">
@@ -339,112 +318,13 @@
         <button class="chip" data-filter="media" aria-pressed="false">AI &amp; Media</button>
         <button class="chip" data-filter="productivity" aria-pressed="false">Productivity</button>
         <button class="chip" data-filter="utility" aria-pressed="false">Utilities</button>
-        <button class="chip" data-filter="platform" aria-pressed="false">Mac · Watch · Vision</button>
       </div>
-
-      <div class="grid rise" id="grid">
-        <!-- MagicLab Solutions -->
-        <a class="card" data-cat="wellness" href="https://apps.apple.com/app/id6757988505" target="_blank" rel="noopener">
-          <div class="tile v1"><span>Z</span></div>
-          <div class="meta"><div class="nm">Zuzu</div><p class="desc">Baby sleep &amp; feed tracker with gentle, actionable insights.</p><div class="tags"><span class="tag">iOS</span><span class="tag">MagicLab</span><span class="tag">HealthKit</span></div><span class="go">App Store ↗</span></div>
-        </a>
-        <div class="card" data-cat="wellness">
-          <div class="tile v4"><span>M</span></div>
-          <div class="meta"><div class="nm">Memories</div><p class="desc">Turn everyday moments into a private, beautiful timeline.</p><div class="tags"><span class="tag">iOS</span><span class="tag">MagicLab</span></div></div>
-        </div>
-        <a class="card" data-cat="productivity" href="https://apps.apple.com/app/id6746427975" target="_blank" rel="noopener">
-          <div class="tile v3"><span>B</span></div>
-          <div class="meta"><div class="nm">Brainfold</div><p class="desc">Flashcards &amp; spaced-repetition study, reimagined.</p><div class="tags"><span class="tag">iOS</span><span class="tag">MagicLab</span></div><span class="go">App Store ↗</span></div>
-        </a>
-        <a class="card" data-cat="productivity" href="https://apps.apple.com/app/myrenewals-sub-track-cancel/id6670665785" target="_blank" rel="noopener">
-          <div class="tile v6"><span>R</span></div>
-          <div class="meta"><div class="nm">MyRenewals</div><p class="desc">Track every subscription — and kill the ones you forgot.</p><div class="tags"><span class="tag">iOS</span><span class="tag">MagicLab</span></div><span class="go">App Store ↗</span></div>
-        </a>
-        <a class="card" data-cat="utility" href="https://apps.apple.com/app/id6444232316" target="_blank" rel="noopener">
-          <div class="tile v2"><span>Q</span></div>
-          <div class="meta"><div class="nm">QRamen</div><p class="desc">Scan, read and save QR codes — fast, private, offline.</p><div class="tags"><span class="tag">iOS</span><span class="tag">MagicLab</span></div><span class="go">App Store ↗</span></div>
-        </a>
-        <div class="card" data-cat="wellness">
-          <div class="tile v5"><span>M</span></div>
-          <div class="meta"><div class="nm">Murmur</div><p class="desc">A calmer way to capture voice notes and passing thoughts.</p><div class="tags"><span class="tag">iOS</span><span class="tag">MagicLab</span></div></div>
-        </div>
-
-        <!-- Music / AI / Media -->
-        <div class="card" data-cat="media">
-          <div class="tile v2"><span>S</span></div>
-          <div class="meta"><div class="nm">Stem Split</div><p class="desc">AI stem separation — pull vocals, drums and bass from any song.</p><div class="tags"><span class="tag">iOS</span><span class="tag">AI · Audio</span></div></div>
-        </div>
-        <div class="card" data-cat="media">
-          <div class="tile v6"><span>D</span></div>
-          <div class="meta"><div class="nm">DualCam</div><p class="desc">Record front and back cameras at the same time.</p><div class="tags"><span class="tag">iOS</span><span class="tag">Camera</span></div></div>
-        </div>
-        <div class="card" data-cat="media">
-          <div class="tile v1"><span>L</span></div>
-          <div class="meta"><div class="nm">LiveMic</div><p class="desc">Turn your iPhone into a live microphone, anywhere.</p><div class="tags"><span class="tag">iOS</span><span class="tag">Audio</span></div></div>
-        </div>
-        <div class="card" data-cat="media">
-          <div class="tile v4"><span>T</span></div>
-          <div class="meta"><div class="nm">TimeWarp</div><p class="desc">Playful AI face-and-time effects for video.</p><div class="tags"><span class="tag">iOS</span><span class="tag">AI · AR</span></div></div>
-        </div>
-        <div class="card" data-cat="media">
-          <div class="tile v3"><span>V</span></div>
-          <div class="meta"><div class="nm">Vocal Pitch</div><p class="desc">Find and train your vocal range with real-time pitch.</p><div class="tags"><span class="tag">iOS</span><span class="tag">Audio · DSP</span></div></div>
-        </div>
-        <div class="card" data-cat="media">
-          <div class="tile v5"><span>A</span></div>
-          <div class="meta"><div class="nm">AI Music</div><p class="desc">Generate original tracks from a prompt with AI.</p><div class="tags"><span class="tag">iOS</span><span class="tag">Generative AI</span></div></div>
-        </div>
-
-        <!-- Productivity / Utilities -->
-        <a class="card" data-cat="productivity" href="https://apps.apple.com/app/id1475886222" target="_blank" rel="noopener">
-          <div class="tile v6"><span>CV</span></div>
-          <div class="meta"><div class="nm">CV Maker</div><p class="desc">Build a clean, professional résumé right on your phone.</p><div class="tags"><span class="tag">iOS</span></div><span class="go">App Store ↗</span></div>
-        </a>
-        <div class="card" data-cat="wellness">
-          <div class="tile v1"><span>J</span></div>
-          <div class="meta"><div class="nm">Journal</div><p class="desc">A quiet, private space for a daily writing habit.</p><div class="tags"><span class="tag">iOS</span></div></div>
-        </div>
-        <div class="card" data-cat="utility">
-          <div class="tile v3"><span>C</span></div>
-          <div class="meta"><div class="nm">CleanTok</div><p class="desc">Bulk-clean your TikTok reposts in a single sweep.</p><div class="tags"><span class="tag">iOS</span></div></div>
-        </div>
-        <div class="card" data-cat="utility">
-          <div class="tile v2"><span>C</span></div>
-          <div class="meta"><div class="nm">Chooser</div><p class="desc">Can't decide? Put fingers down and let it pick.</p><div class="tags"><span class="tag">iOS</span></div></div>
-        </div>
-        <div class="card" data-cat="productivity">
-          <div class="tile v5"><span>I</span></div>
-          <div class="meta"><div class="nm">InvoiceMaker</div><p class="desc">Send clean, professional invoices in minutes.</p><div class="tags"><span class="tag">iOS</span></div></div>
-        </div>
-        <div class="card" data-cat="utility">
-          <div class="tile v4"><span>S</span></div>
-          <div class="meta"><div class="nm">Stamp</div><p class="desc">Add real, tamper-clear timestamps to your photos.</p><div class="tags"><span class="tag">iOS</span></div></div>
-        </div>
-        <div class="card" data-cat="wellness">
-          <div class="tile v6"><span>L</span></div>
-          <div class="meta"><div class="nm">LooksMax</div><p class="desc">Facial analysis and a coach for looking your best.</p><div class="tags"><span class="tag">iOS</span><span class="tag">Vision</span></div></div>
-        </div>
-        <div class="card" data-cat="utility">
-          <div class="tile v1"><span>X</span></div>
-          <div class="meta"><div class="nm">Xray Anatomy</div><p class="desc">Explore the human body, layer by interactive layer.</p><div class="tags"><span class="tag">iOS</span><span class="tag">Education</span></div></div>
-        </div>
-
-        <!-- Mac / Watch / Vision -->
-        <div class="card" data-cat="platform">
-          <div class="tile v3"><span>N</span></div>
-          <div class="meta"><div class="nm">DynamicNotch</div><p class="desc">Make the Mac's notch genuinely useful.</p><div class="tags"><span class="tag">macOS</span></div></div>
-        </div>
-        <div class="card" data-cat="platform">
-          <div class="tile v5"><span>W</span></div>
-          <div class="meta"><div class="nm">WristTube</div><p class="desc">Watch YouTube right from your Apple Watch.</p><div class="tags"><span class="tag">watchOS</span></div></div>
-        </div>
-      </div>
-
-      <p class="studio-note rise">Showing 22 of <b>50+</b> — plus watch faces, browsers, health tools and utilities across <b>MagicLab Solutions</b>, <b>EU App Solutions</b> and other studios.</p>
+      <div class="grid rise" id="grid"></div>
+      <p class="studio-note rise">Showing 24 of <b>50+</b> — plus watch faces, browsers, health tools and utilities across <b>MagicLab Solutions</b>, <b>EU App Solutions</b> and other studios.</p>
     </div>
   </section>
 
-  <!-- ===== CRAFT ===== -->
+  <!-- CRAFT -->
   <section id="stack">
     <div class="wrap sec-head">
       <p class="eyebrow rise"><span class="folio">§03</span> Craft</p>
@@ -460,6 +340,7 @@
             <div class="plat"><div class="p">macOS</div><div class="pd">Pure SwiftUI &amp; Mac Catalyst apps</div></div>
             <div class="plat"><div class="p">visionOS</div><div class="pd">Spatial apps for Apple Vision Pro</div></div>
             <div class="plat"><div class="p">watchOS</div><div class="pd">Independent &amp; companion watch apps</div></div>
+            <div class="plat spot"><div class="p">CarPlay</div><div class="pd">Full in-car audio UI — ClearFM radio: tab bar, station artwork, Now Playing &amp; live-stream Shazam, sharing one player with the phone</div></div>
             <div class="plat"><div class="p">Android</div><div class="pd">Kotlin · Kotlin Multiplatform shared cores</div></div>
           </div>
         </div>
@@ -467,10 +348,10 @@
           <h3>Domains &amp; tooling</h3>
           <div class="taglist">
             <span class="t">On-device AI</span><span class="t">Camera &amp; AR</span><span class="t">Audio / DSP</span>
+            <span class="t">CarPlay</span><span class="t">ShazamKit</span><span class="t">Now Playing / MediaPlayer</span>
             <span class="t">Lottie · dotLottie · ThorVG</span><span class="t">RevenueCat &amp; subscriptions</span>
             <span class="t">HealthKit</span><span class="t">Firebase</span><span class="t">Supabase</span>
-            <span class="t">Push &amp; FCM</span><span class="t">StoreKit 2</span><span class="t">Node / APIs</span>
-            <span class="t">Fastlane CI/CD</span><span class="t">App Store Connect</span><span class="t">Localization at scale</span>
+            <span class="t">StoreKit 2</span><span class="t">Node / APIs</span><span class="t">Fastlane CI/CD</span><span class="t">Localization at scale</span>
           </div>
           <h3 style="margin-top:34px">The way I ship</h3>
           <p style="color:var(--ink-2); font-size:15.5px; margin:0; max-width:52ch">Automated pipelines do the boring parts — localize, build, distribution-sign, upload, watch crashes — so I can spend the time on the app itself. Ideas become TestFlight builds in a day.</p>
@@ -479,7 +360,7 @@
     </div>
   </section>
 
-  <!-- ===== CONTACT ===== -->
+  <!-- CONTACT -->
   <section id="contact" class="contact">
     <div class="wrap">
       <p class="eyebrow rise"><span class="folio">§04</span> Colophon &amp; Contact</p>
@@ -499,11 +380,154 @@
   </section>
 </main>
 
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="lb-name">
+  <div class="lb-backdrop" data-close></div>
+  <div class="lb-panel" role="document">
+    <button class="lb-x" data-close aria-label="Close">✕</button>
+    <div class="lb-head">
+      <div class="lb-ico" id="lb-ico"></div>
+      <div>
+        <h3 class="lb-name" id="lb-name"></h3>
+        <p class="lb-tagline" id="lb-tagline"></p>
+        <div class="lb-tags" id="lb-tags"></div>
+        <a class="lb-store" id="lb-store" target="_blank" rel="noopener" hidden>View on the App Store ↗</a>
+      </div>
+    </div>
+    <div class="lb-shots" id="lb-shots" hidden>
+      <button class="lb-arrow prev" id="lb-prev" aria-label="Previous screenshot">‹</button>
+      <div class="lb-track" id="lb-track"></div>
+      <button class="lb-arrow next" id="lb-next" aria-label="Next screenshot">›</button>
+      <p class="lb-hint">Swipe or use ← → to browse screenshots</p>
+    </div>
+  </div>
+</div>
+
 <script>
 (function(){
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* scroll reveal */
+  // ---------- App data ----------
+  var APPS = [
+    {s:"zuzu",n:"Zuzu",t:"Baby sleep, feed & diaper tracker with gentle insights.",c:"wellness",tags:["iOS","MagicLab","HealthKit"],id:6757988505,shots:0,studio:1},
+    {s:"memories",n:"Memories",t:"Turn baby's month-by-month moments into little films.",c:"wellness",tags:["iOS","MagicLab"],id:6763877209,shots:0,studio:1},
+    {s:"brainfold",n:"Brainfold",t:"An AI study companion — flashcards & spaced repetition.",c:"productivity",tags:["iOS","AI","MagicLab"],id:6760474378,shots:0,studio:1},
+    {s:"myrenewals",n:"MyRenewals",t:"Track every subscription and cancel what you forgot.",c:"productivity",tags:["iOS","MagicLab"],id:6752888662,shots:0,studio:1},
+    {s:"qramen",n:"QRamen",t:"Scan, read and save QR codes — fast, private, offline.",c:"utility",tags:["iOS","MagicLab"],id:6444232316,shots:4,studio:1},
+    {s:"murmur",n:"Murmur",t:"A calmer way to capture voice notes and passing thoughts.",c:"wellness",tags:["iOS","MagicLab"],id:null,shots:0,studio:1,mono:"M",v:5},
+    {s:"stemsplit",n:"Stem Split",t:"AI stem separation — vocals, drums and bass from any song.",c:"media",tags:["iOS","AI","Audio"],id:6742150522,shots:0},
+    {s:"dualcam",n:"DualCam",t:"Record with the front and back cameras at the same time.",c:"media",tags:["iOS","Camera"],id:6768068033,shots:0},
+    {s:"livemic",n:"LiveMic",t:"Turn your iPhone into a wireless Bluetooth microphone.",c:"media",tags:["iOS","Audio"],id:6761895557,shots:0},
+    {s:"aimusic",n:"AI Music",t:"Generate original songs and music from a prompt with AI.",c:"media",tags:["iOS","Generative AI"],id:6448696426,shots:5},
+    {s:"timewarp",n:"TimeWarp",t:"The viral time-warp scan effect for funny face videos.",c:"media",tags:["iOS","AR","Video"],id:6444313157,shots:5},
+    {s:"vocalpitch",n:"Vocal Pitch",t:"Test and train your vocal range in real time.",c:"media",tags:["iOS","Audio"],id:6478636110,shots:3},
+    {s:"clearfm",n:"ClearFM",t:"Internet radio with full CarPlay, favorites and live Shazam.",c:"media",tags:["iOS","CarPlay","Radio"],id:342606477,shots:0,hot:"CarPlay"},
+    {s:"wristtube",n:"WristTube",t:"Watch YouTube right from your Apple Watch.",c:"media",tags:["watchOS","Video"],id:null,shots:0,mono:"W",v:3},
+    {s:"cvmaker",n:"CV Maker",t:"Build a clean, professional résumé & CV with AI.",c:"productivity",tags:["iOS","AI"],id:1475886222,shots:5},
+    {s:"invoicemaker",n:"InvoiceMaker",t:"Create and send professional invoices in minutes.",c:"productivity",tags:["iOS"],id:1615283166,shots:5},
+    {s:"journal",n:"Journal",t:"A private video journal and effortless daily diary.",c:"wellness",tags:["iOS","Video"],id:6738170410,shots:0},
+    {s:"cleantok",n:"CleanTok",t:"Bulk-remove your TikTok reposts in one clean sweep.",c:"utility",tags:["iOS"],id:6771870687,shots:0},
+    {s:"clearwave",n:"Clear Wave",t:"Eject trapped water and clear your speakers with sound.",c:"utility",tags:["iOS","Audio"],id:1602078972,shots:5},
+    {s:"stamp",n:"Stamp",t:"Add real date, time and location stamps to your photos.",c:"utility",tags:["iOS","Camera"],id:6475762768,shots:5},
+    {s:"looksmax",n:"LooksMax",t:"AI face scan with a looks rating and glow-up tips.",c:"wellness",tags:["iOS","AI","Vision"],id:6476044149,shots:3},
+    {s:"xrayanatomy",n:"XRay Anatomy",t:"Learn human anatomy layer by interactive layer.",c:"utility",tags:["iOS","Education"],id:6738170494,shots:0},
+    {s:"dynamicnotch",n:"Dynamic Island",t:"Wallpapers, widgets and Dynamic Island themes.",c:"utility",tags:["iOS","Widgets"],id:1615753081,shots:5},
+    {s:"chooser",n:"Chooser",t:"Put fingers on the screen and let it randomly pick.",c:"utility",tags:["iOS"],id:1624708039,shots:0}
+  ];
+  var BY = {}; APPS.forEach(function(a){BY[a.s]=a;});
+
+  function thumbHTML(a){
+    if(a.mono) return '<span class="tile v'+(a.v||1)+'"><span>'+a.mono+'</span></span>';
+    return '<img class="ico" src="assets/icons/'+a.s+'.webp" alt="'+a.n+' app icon" width="56" height="56" loading="lazy" decoding="async">';
+  }
+  function tagsHTML(list, hot){
+    return list.map(function(t){ return '<span class="tag'+(hot&&t===hot?' hot':'')+'">'+t+'</span>'; }).join('');
+  }
+  function hint(a){
+    if(a.shots>0) return a.shots+' screens →';
+    if(a.id) return 'App Store →';
+    return 'Details →';
+  }
+
+  // ---------- Render grid ----------
+  var grid = document.getElementById("grid");
+  grid.innerHTML = APPS.map(function(a){
+    return '<button class="card" data-cat="'+a.c+'" data-slug="'+a.s+'" aria-label="'+a.n+' — open details">'
+      + '<span class="thumb">'+thumbHTML(a)+'</span>'
+      + '<span class="meta"><span class="nm">'+a.n+'</span>'
+      + '<span class="desc">'+a.t+'</span>'
+      + '<span class="tags">'+tagsHTML(a.tags,a.hot)+'</span>'
+      + '<span class="go">'+hint(a)+'</span></span></button>';
+  }).join('');
+
+  // ---------- Filters ----------
+  var chips = [].slice.call(document.querySelectorAll(".chip"));
+  var cards = [].slice.call(grid.querySelectorAll(".card"));
+  chips.forEach(function(chip){
+    chip.addEventListener("click", function(){
+      chips.forEach(function(c){ c.setAttribute("aria-pressed","false"); });
+      chip.setAttribute("aria-pressed","true");
+      var f = chip.getAttribute("data-filter");
+      cards.forEach(function(card){
+        card.classList.toggle("hide", !(f==="all" || card.getAttribute("data-cat")===f));
+      });
+    });
+  });
+
+  // ---------- Lightbox ----------
+  var lb = document.getElementById("lightbox");
+  var lbIco = document.getElementById("lb-ico"), lbName = document.getElementById("lb-name"),
+      lbTag = document.getElementById("lb-tagline"), lbTags = document.getElementById("lb-tags"),
+      lbStore = document.getElementById("lb-store"), lbShots = document.getElementById("lb-shots"),
+      lbTrack = document.getElementById("lb-track"), lbPrev = document.getElementById("lb-prev"),
+      lbNext = document.getElementById("lb-next");
+  var lastFocus = null;
+
+  function openModal(slug){
+    var a = BY[slug]; if(!a) return;
+    lastFocus = document.activeElement;
+    lbIco.innerHTML = thumbHTML(a);
+    lbName.textContent = a.n;
+    lbTag.textContent = a.t;
+    lbTags.innerHTML = tagsHTML(a.tags,a.hot);
+    if(a.id){ lbStore.href = "https://apps.apple.com/app/id"+a.id; lbStore.hidden = false; }
+    else { lbStore.hidden = true; }
+    if(a.shots>0){
+      var imgs=""; for(var i=0;i<a.shots;i++){
+        imgs += '<div class="lb-shot"><img src="assets/shots/'+a.s+'/'+i+'.webp" alt="'+a.n+' screenshot '+(i+1)+'" loading="lazy" decoding="async"></div>';
+      }
+      lbTrack.innerHTML = imgs; lbShots.hidden = false;
+      var multi = a.shots>1; lbPrev.style.display = lbNext.style.display = multi?"grid":"none";
+      lbTrack.scrollLeft = 0;
+    } else { lbShots.hidden = true; lbTrack.innerHTML=""; }
+    lb.classList.add("open"); lb.setAttribute("aria-hidden","false");
+    document.body.classList.add("locked");
+    document.querySelector(".lb-x").focus();
+  }
+  function closeModal(){
+    lb.classList.remove("open"); lb.setAttribute("aria-hidden","true");
+    document.body.classList.remove("locked");
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  cards.forEach(function(card){
+    card.addEventListener("click", function(){ openModal(card.getAttribute("data-slug")); });
+  });
+  lb.addEventListener("click", function(e){ if(e.target.hasAttribute("data-close")) closeModal(); });
+  function scrollShots(dir){
+    var shot = lbTrack.querySelector(".lb-shot");
+    var step = shot ? shot.getBoundingClientRect().width + 16 : 300;
+    lbTrack.scrollBy({left: dir*step, behavior: reduce?"auto":"smooth"});
+  }
+  lbPrev.addEventListener("click", function(){ scrollShots(-1); });
+  lbNext.addEventListener("click", function(){ scrollShots(1); });
+  document.addEventListener("keydown", function(e){
+    if(!lb.classList.contains("open")) return;
+    if(e.key==="Escape") closeModal();
+    else if(e.key==="ArrowRight") scrollShots(1);
+    else if(e.key==="ArrowLeft") scrollShots(-1);
+  });
+
+  // ---------- Reveal ----------
   var rises = [].slice.call(document.querySelectorAll(".rise"));
   if(reduce || !("IntersectionObserver" in window)){
     rises.forEach(function(el){ el.classList.add("in"); });
@@ -514,20 +538,14 @@
     rises.forEach(function(el){ io.observe(el); });
   }
 
-  /* count-up stats */
+  // ---------- Count-up ----------
   function countUp(el){
     var target = parseInt(el.getAttribute("data-count"),10);
     var suffix = el.getAttribute("data-suffix") || "";
-    if(reduce){ el.textContent = target + suffix; return; }
-    var start = null, dur = 1100;
-    function step(ts){
-      if(!start) start = ts;
-      var p = Math.min((ts-start)/dur, 1);
-      var eased = 1 - Math.pow(1-p, 3);
-      var val = Math.round(eased * target);
-      el.innerHTML = val + (suffix ? '<span class="plus">'+suffix+'</span>' : "");
-      if(p < 1) requestAnimationFrame(step);
-    }
+    if(reduce){ el.innerHTML = target + (suffix?'<span class="plus">'+suffix+'</span>':""); return; }
+    var start=null, dur=1100;
+    function step(ts){ if(!start) start=ts; var p=Math.min((ts-start)/dur,1); var v=Math.round((1-Math.pow(1-p,3))*target);
+      el.innerHTML = v + (suffix?'<span class="plus">'+suffix+'</span>':""); if(p<1) requestAnimationFrame(step); }
     requestAnimationFrame(step);
   }
   var counters = [].slice.call(document.querySelectorAll("[data-count]"));
@@ -536,26 +554,8 @@
       entries.forEach(function(e){ if(e.isIntersecting){ countUp(e.target); co.unobserve(e.target); } });
     }, {threshold:0.6});
     counters.forEach(function(el){ co.observe(el); });
-  } else {
-    counters.forEach(countUp);
-  }
-
-  /* filters */
-  var chips = [].slice.call(document.querySelectorAll(".chip"));
-  var cards = [].slice.call(document.querySelectorAll("#grid .card"));
-  chips.forEach(function(chip){
-    chip.addEventListener("click", function(){
-      chips.forEach(function(c){ c.setAttribute("aria-pressed","false"); });
-      chip.setAttribute("aria-pressed","true");
-      var f = chip.getAttribute("data-filter");
-      cards.forEach(function(card){
-        var show = (f === "all") || card.getAttribute("data-cat") === f;
-        card.classList.toggle("hide", !show);
-      });
-    });
-  });
+  } else { counters.forEach(countUp); }
 })();
 </script>
-<!-- ARTIFACT:END -->
 </body>
 </html>
