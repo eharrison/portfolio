@@ -1,0 +1,134 @@
+{
+ "zuzu": {
+  "id": 6757988505,
+  "name": "Zuzu: Baby Tracker & Sleep",
+  "shots": 0,
+  "icon": "assets/icons/zuzu.webp"
+ },
+ "memories": {
+  "id": 6763877209,
+  "name": "Memories \u2013 Baby Monthly Films",
+  "shots": 0,
+  "icon": "assets/icons/memories.webp"
+ },
+ "myrenewals": {
+  "id": 6752888662,
+  "name": "MyRenewals: Sub Track & Cancel",
+  "shots": 0,
+  "icon": "assets/icons/myrenewals.webp"
+ },
+ "qramen": {
+  "id": 6444232316,
+  "name": "QRamen - Scan, read, save QRs",
+  "shots": 4,
+  "icon": "assets/icons/qramen.webp"
+ },
+ "brainfold": {
+  "id": 6760474378,
+  "name": "Brainfold: AI Study Companion",
+  "shots": 0,
+  "icon": "assets/icons/brainfold.webp"
+ },
+ "dualcam": {
+  "id": 6768068033,
+  "name": "DualCam: Dual Video Recorder",
+  "shots": 0,
+  "icon": "assets/icons/dualcam.webp"
+ },
+ "cleantok": {
+  "id": 6771870687,
+  "name": "CleanTok: Repost Remover",
+  "shots": 0,
+  "icon": "assets/icons/cleantok.webp"
+ },
+ "livemic": {
+  "id": 6761895557,
+  "name": "LiveMic: Bluetooth Microphone",
+  "shots": 0,
+  "icon": "assets/icons/livemic.webp"
+ },
+ "stemsplit": {
+  "id": 6742150522,
+  "name": "Stem Split - AI Vocal Remover",
+  "shots": 0,
+  "icon": "assets/icons/stemsplit.webp"
+ },
+ "journal": {
+  "id": 6738170410,
+  "name": "Video Journal & Easy Diary",
+  "shots": 0,
+  "icon": "assets/icons/journal.webp"
+ },
+ "cvmaker": {
+  "id": 1475886222,
+  "name": "Resume Builder & CV Maker AI",
+  "shots": 5,
+  "icon": "assets/icons/cvmaker.webp"
+ },
+ "clearwave": {
+  "id": 1602078972,
+  "name": "Clear Wave - Water Eject App",
+  "shots": 5,
+  "icon": "assets/icons/clearwave.webp"
+ },
+ "timewarp": {
+  "id": 6444313157,
+  "name": "Time Warp Scan - Funny Face",
+  "shots": 5,
+  "icon": "assets/icons/timewarp.webp"
+ },
+ "looksmax": {
+  "id": 6476044149,
+  "name": "Glow AI Scanner: Looks Rating",
+  "shots": 3,
+  "icon": "assets/icons/looksmax.webp"
+ },
+ "vocalpitch": {
+  "id": 6478636110,
+  "name": "Sing Whiz - Vocal Range Test",
+  "shots": 3,
+  "icon": "assets/icons/vocalpitch.webp"
+ },
+ "dynamicnotch": {
+  "id": 1615753081,
+  "name": "Wallpapers, Widgets & Island",
+  "shots": 5,
+  "icon": "assets/icons/dynamicnotch.webp"
+ },
+ "stamp": {
+  "id": 6475762768,
+  "name": "Timestamp Camera\u00b7Date Stamper",
+  "shots": 5,
+  "icon": "assets/icons/stamp.webp"
+ },
+ "xrayanatomy": {
+  "id": 6738170494,
+  "name": "XRay - Sublux Anatomy Learning",
+  "shots": 0,
+  "icon": "assets/icons/xrayanatomy.webp"
+ },
+ "chooser": {
+  "id": 1624708039,
+  "name": "Finger Picker - Random Chooser",
+  "shots": 0,
+  "icon": "assets/icons/chooser.webp"
+ },
+ "invoicemaker": {
+  "id": 1615283166,
+  "name": "Invoice Maker | ^Generator",
+  "shots": 5,
+  "icon": "assets/icons/invoicemaker.webp"
+ },
+ "aimusic": {
+  "id": 6448696426,
+  "name": "AI Music & Song Generator *",
+  "shots": 5,
+  "icon": "assets/icons/aimusic.webp"
+ },
+ "clearfm": {
+  "id": 342606477,
+  "name": "Radio App - FM Transmitter",
+  "shots": 0,
+  "icon": "assets/icons/clearfm.webp"
+ }
+}
