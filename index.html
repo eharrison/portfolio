@@ -123,8 +123,8 @@
   .sec-head .deck{max-width:58ch; color:var(--ink-2); margin:16px 0 0; font-size:clamp(15.5px,1.8vw,17.5px)}
 
   /* ============ Experience ============ */
-  .feature{display:grid; grid-template-columns:repeat(3,1fr); gap:0; border-top:1px solid var(--line)}
-  .feat{padding:34px 30px 40px; border-right:1px solid var(--line); position:relative}
+  .feature{display:grid; grid-template-columns:repeat(4,1fr); gap:0; border-top:1px solid var(--line)}
+  .feat{padding:32px 26px 38px; border-right:1px solid var(--line); position:relative}
   .feat:last-child{border-right:0}
   .feat .co{display:flex; align-items:baseline; justify-content:space-between; gap:12px}
   .feat .co h3{font-family:var(--serif); font-size:clamp(26px,3vw,34px); letter-spacing:-.01em}
@@ -137,7 +137,8 @@
   .lf-apps{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px}
   .lf-apps a,.lf-apps span{font-family:var(--mono); font-size:10.5px; letter-spacing:.05em; text-transform:uppercase; padding:5px 9px; border:1px solid var(--line); border-radius:999px; color:var(--ink-2); transition:.2s}
   .lf-apps a:hover{border-color:var(--accent); color:var(--accent)}
-  @media (max-width:860px){ .feature{grid-template-columns:1fr} .feat{border-right:0; border-bottom:1px solid var(--line)} .feat:last-child{border-bottom:0} }
+  @media (max-width:1040px){ .feature{grid-template-columns:repeat(2,1fr)} .feat:nth-child(2n){border-right:0} .feat:nth-child(-n+2){border-bottom:1px solid var(--line)} }
+  @media (max-width:600px){ .feature{grid-template-columns:1fr} .feat{border-right:0; border-bottom:1px solid var(--line)} .feat:last-child{border-bottom:0} }
 
   /* ============ Work grid ============ */
   .filters{display:flex; flex-wrap:wrap; gap:8px; margin:6px 0 30px}
@@ -256,15 +257,15 @@
       <p class="eyebrow rise" style="--i:0"><span class="folio">§00</span> Selected Works · Mobile &amp; Product Engineering</p>
       <h1 class="rise" style="--i:1">Evandro Harrison<br>Hoffmann<span class="amp">.</span></h1>
       <p class="thesis rise" style="--i:2">I build mobile apps that <b>ship</b> — then I do it again, and again.</p>
-      <p class="bio rise" style="--i:3">For over a decade I've turned ideas into software people actually keep, across iOS, macOS, watchOS, visionOS, CarPlay and Android. I've built inside two of Southeast Asia's most-used apps — <b style="color:var(--ink)">AirAsia</b> and <b style="color:var(--ink)">Mindvalley</b> — led the native apps for <b style="color:var(--ink)">LottieFiles</b>, the world's animation platform, and through my studio <b style="color:var(--ink)">MagicLab Solutions</b> put dozens of my own apps in front of real users.</p>
+      <p class="bio rise" style="--i:3">For over a decade I've turned ideas into software people actually keep, across iOS, macOS, tvOS, watchOS, visionOS, CarPlay and Android. I've built inside travel and wellness apps used by millions — <b style="color:var(--ink)">AirAsia</b>, <b style="color:var(--ink)">trivago</b> and <b style="color:var(--ink)">Mindvalley</b> — led the native apps for <b style="color:var(--ink)">LottieFiles</b>, the world's animation platform, and through my studio <b style="color:var(--ink)">MagicLab Solutions</b> put dozens of my own apps in front of real users.</p>
       <div class="hero-cta rise" style="--i:4">
         <a class="btn solid" href="#work">See the work <span class="arw">↓</span></a>
         <a class="btn" href="#contact">Get in touch <span class="arw">↗</span></a>
       </div>
       <div class="stats rise" style="--i:5">
         <div class="stat"><div class="n" data-count="50" data-suffix="+">0<span class="plus">+</span></div><div class="k">Apps shipped<br>to the App Store</div></div>
-        <div class="stat"><div class="n" data-count="6">0</div><div class="k">Platforms — iOS · macOS · watchOS<br>visionOS · CarPlay · Android</div></div>
-        <div class="stat"><div class="n" data-count="3">0</div><div class="k">Flagship apps — AirAsia<br>Mindvalley · LottieFiles</div></div>
+        <div class="stat"><div class="n" data-count="7">0</div><div class="k">Platforms — iOS · macOS · tvOS · watchOS<br>visionOS · CarPlay · Android</div></div>
+        <div class="stat"><div class="n" data-count="4">0</div><div class="k">Flagship companies — AirAsia · trivago<br>Mindvalley · LottieFiles</div></div>
         <div class="stat word"><div class="n" style="font-family:var(--serif)">MagicLab</div><div class="k">Studio<br>co-founder</div></div>
       </div>
     </div>
@@ -275,26 +276,32 @@
     <div class="wrap sec-head">
       <p class="eyebrow rise"><span class="folio">§01</span> Experience</p>
       <h2 class="rise">Trusted with the apps millions open every day.</h2>
-      <p class="deck rise">Product engineering at company scale — from a Southeast-Asian super-app to a global animation platform, across phones, desktops and spatial computing.</p>
+      <p class="deck rise">Product engineering at company scale — from global travel super-brands to a worldwide animation platform, across phones, TVs, desktops and spatial computing.</p>
     </div>
     <div class="wrap">
       <div class="feature rise">
         <article class="feat">
           <div class="co"><h3>AirAsia</h3><span class="yr">Kuala Lumpur</span></div>
           <p class="role">Mobile Engineer</p>
-          <p>Shipped features inside the AirAsia super-app — the travel-and-lifestyle platform for flights, food and payments used across Southeast Asia. Native mobile at super-app scale: performance, reliability and release discipline for millions of daily users.</p>
+          <p>Shipped features in the AirAsia super-app — flights, food and payments across Southeast Asia — with the performance and release discipline that super-app scale demands.</p>
           <div class="ver"><span><b>Super-app</b> · flights · food · fintech</span></div>
         </article>
         <article class="feat">
-          <div class="co"><h3>Mindvalley</h3><span class="yr">Kuala Lumpur</span></div>
+          <div class="co"><h3>trivago</h3><span class="yr">Düsseldorf</span></div>
           <p class="role">Mobile Engineer</p>
-          <p>Built for the Mindvalley app — personal-growth programs, meditations and live events. Rich media playback, subscription flows and a polished learning experience for a global audience of lifelong learners.</p>
-          <div class="ver"><span><b>Learning</b> · media · subscriptions</span></div>
+          <p>Built for trivago's mobile app — the global hotel &amp; accommodation search platform — tuning search, results and booking flows for travelers worldwide.</p>
+          <div class="ver"><span><b>Travel</b> · hotel search · iOS</span></div>
+        </article>
+        <article class="feat">
+          <div class="co"><h3>Mindvalley</h3><span class="yr">Kuala Lumpur</span></div>
+          <p class="role">Mobile Engineer · iOS · tvOS</p>
+          <p>Built across Mindvalley's iOS and tvOS apps — the flagship personal-growth app and <b style="color:var(--ink)">Omvana</b>, its meditation &amp; calm-audio player — bringing courses and meditations to phone and big screen.</p>
+          <div class="ver"><span><b>Learning</b> · Omvana · iOS · tvOS</span></div>
         </article>
         <article class="feat lead">
           <div class="co"><h3>LottieFiles</h3><span class="yr">Remote</span></div>
           <p class="role">Native Apps Lead · iOS · macOS · visionOS</p>
-          <p>Led LottieFiles' native apps on one shared rendering core — dotLottie / ThorVG with a Kotlin-Multiplatform toolkit. Turned "Compare Players" into a device-true Motion Lab and authored the strategy to make the apps the production-motion cockpit for the Figma-Motion era.</p>
+          <p>Led the native apps on one shared engine — dotLottie / ThorVG with a Kotlin-Multiplatform toolkit. Turned "Compare Players" into a device-true Motion Lab and set the strategy for the Figma-Motion era.</p>
           <div class="lf-apps">
             <a href="https://apps.apple.com/app/id1231821260" target="_blank" rel="noopener">iOS — LottiePreview ↗</a>
             <span>macOS 2.3</span><span>visionOS 1.0</span>
@@ -339,6 +346,7 @@
             <div class="plat"><div class="p">iOS</div><div class="pd">Swift · SwiftUI · UIKit · MVVM + Coordinator</div></div>
             <div class="plat"><div class="p">macOS</div><div class="pd">Pure SwiftUI &amp; Mac Catalyst apps</div></div>
             <div class="plat"><div class="p">visionOS</div><div class="pd">Spatial apps for Apple Vision Pro</div></div>
+            <div class="plat"><div class="p">tvOS</div><div class="pd">Apple TV apps &amp; big-screen media — Mindvalley &amp; Omvana</div></div>
             <div class="plat"><div class="p">watchOS</div><div class="pd">Independent &amp; companion watch apps</div></div>
             <div class="plat spot"><div class="p">CarPlay</div><div class="pd">Full in-car audio UI — ClearFM radio: tab bar, station artwork, Now Playing &amp; live-stream Shazam, sharing one player with the phone</div></div>
             <div class="plat"><div class="p">Android</div><div class="pd">Kotlin · Kotlin Multiplatform shared cores</div></div>
