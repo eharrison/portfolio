@@ -107,14 +107,14 @@
   .btn.solid:hover{background:var(--accent-2); border-color:var(--accent-2); color:var(--bg)}
   .btn.solid:hover .arw{transform:translateY(3px)}
 
-  .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:0; margin-top:clamp(44px,6vw,64px); border-top:1px solid var(--line)}
-  .stat{padding:26px 22px 6px 0; border-right:1px solid var(--line-2)}
-  .stat:last-child{border-right:0}
+  .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:0; margin-top:clamp(54px,7vw,82px); border-top:1px solid var(--line)}
+  .stat{padding:clamp(36px,3.6vw,48px) 36px; border-left:1px solid var(--line-2)}
+  .stat:first-child{border-left:0; padding-left:0}
   .stat .n{font-family:var(--serif); font-size:clamp(38px,6vw,60px); line-height:1; letter-spacing:-.02em; font-variant-numeric:tabular-nums}
   .stat .n .plus{color:var(--accent)}
-  .stat .k{font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); margin-top:12px; line-height:1.5}
+  .stat .k{font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); margin-top:18px; line-height:1.6}
   .stat.word .n{font-size:clamp(26px,3.4vw,34px)}
-  @media (max-width:720px){ .stats{grid-template-columns:repeat(2,1fr)} .stat:nth-child(2n){border-right:0} .stat{padding-right:16px} }
+  @media (max-width:720px){ .stats{grid-template-columns:repeat(2,1fr)} .stat{padding:32px 24px} .stat:nth-child(2n+1){border-left:0; padding-left:0} }
 
   /* ============ Sections ============ */
   section{position:relative}
